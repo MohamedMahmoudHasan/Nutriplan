@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="./src/css/style.css" />
   </head>
   <body class="bg-gray-50 font-sans">
-    
+    <!-- Loading Overlay -->
     <div
       id="app-loading-overlay"
       class="loading fixed inset-0 bg-white z-[100] flex items-center justify-center transition-opacity duration-500"
@@ -181,22 +181,23 @@
             </div>
           </div>
 
-          <div class="flex items-center gap-3 overflow-x-auto pb-2">
+          <div id="meals-areas" class="flex items-center gap-3 overflow-x-auto pb-2">
             <button
               class="px-4 py-2 bg-emerald-600 text-white rounded-full font-medium text-sm whitespace-nowrap hover:bg-emerald-700 transition-all"
             >
               All Recipes
             </button>
             <button
+              data-area = "Egyptian"
               class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full font-medium text-sm whitespace-nowrap hover:bg-gray-200 transition-all"
             >
-              Egyptain
+              Egyptian
             </button>
           </div>
         </div>
       </section>
 
-      <section id="meal-categories-section" class="px-8 py-6 bg-white">
+      <section  id="meal-categories-section" class="px-8 py-6 bg-white">
         <div>
           <div class="flex items-center justify-between mb-4">
             <div>
@@ -235,7 +236,7 @@
         </div>
       </section>
 
-      <section id="all-recipes-section" class="px-8 py-8 bg-gray-50">
+      <section  id="all-recipes-section" class="px-8 py-8 bg-gray-50">
         <div>
           <div class="flex items-center justify-between mb-6">
             <div>
@@ -315,7 +316,7 @@
         </div>
       </section>
 
-      <section id="meal-details" class="px-8 py-8 bg-gray-50">
+      <section style="display: none;" id="meal-details" class="px-8 py-8 bg-gray-50">
         <div class="max-w-7xl mx-auto">
           <!-- Back Button -->
           <button
@@ -752,7 +753,7 @@
       </section>
 
       <!-- ============= PRODUCT SCANNER SECTION ============= -->
-      <section id="products-section" class="px-8 py-8 bg-gray-50 min-h-screen">
+      <section style="display: none;" id="products-section" class="px-8 py-8 bg-gray-50 min-h-screen">
         <div class="max-w-7xl mx-auto">
           <!-- Search Header -->
           <div
@@ -988,7 +989,7 @@
       </section>
 
       <!-- ============= FOOD LOG SECTION ============= -->
-      <section id="foodlog-section" class="px-8 py-8 bg-gray-50 min-h-screen">
+      <section style="display: none;" id="foodlog-section" class="px-8 py-8 bg-gray-50 min-h-screen">
         <div class="max-w-7xl mx-auto">
           <!-- Page Header -->
           <div
