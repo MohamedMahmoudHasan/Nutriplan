@@ -297,8 +297,6 @@ listViewBtn.addEventListener('click',()=>{
 recipesGrid.addEventListener('click',(e)=>{
   let recipeBtn = e.target.closest('[data-meal-id]')
   if(recipeBtn){
-    console.log(recipeBtn.getAttribute('data-meal-id'))
-
     searchFiltersSection.style.display = "none" 
     mealCategoriesSection.style.display = "none" 
     allRecipesSection.style.display = "none" 
@@ -418,7 +416,7 @@ async function displayMealDetailsMain(recipe,nutrit){
                   >
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  
+                  ${ingredients}
                   
                 </div>
               </div>
@@ -448,7 +446,7 @@ async function displayMealDetailsMain(recipe,nutrit){
                   class="relative aspect-video rounded-xl overflow-hidden bg-gray-100"
                 >
                   <iframe
-                    src="https://www.youtube.com/embed/4aZr5hZXP_s"
+                    src="${getEmbedUrl(recipe.youtube)}"
                     class="absolute inset-0 w-full h-full"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -476,8 +474,8 @@ async function displayMealDetailsMain(recipe,nutrit){
                     class="text-center py-4 mb-4 bg-linear-to-br from-emerald-50 to-teal-50 rounded-xl"
                   >
                     <p class="text-sm text-gray-600">Calories per serving</p>
-                    <p class="text-4xl font-bold text-emerald-600">485</p>
-                    <p class="text-xs text-gray-500 mt-1">Total: 1940 cal</p>
+                    <p class="text-4xl font-bold text-emerald-600">${nutrit.perServing.calories}</p>
+                    <p class="text-xs text-gray-500 mt-1">Total: ${nutrit.totals.calories} cal</p>
                   </div>
 
                   <div class="space-y-4">
@@ -486,12 +484,12 @@ async function displayMealDetailsMain(recipe,nutrit){
                         <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
                         <span class="text-gray-700">Protein</span>
                       </div>
-                      <span class="font-bold text-gray-900">42g</span>
+                      <span class="font-bold text-gray-900">${nutrit.perServing.protein}g</span>
                     </div>
                     <div class="w-full bg-gray-100 rounded-full h-2">
                       <div
                         class="bg-emerald-500 h-2 rounded-full"
-                        style="width: 84%"
+                        style="width: ${nutrit.perServing.protein/nutrit.totals.protein*100}%"
                       ></div>
                     </div>
 
@@ -500,12 +498,12 @@ async function displayMealDetailsMain(recipe,nutrit){
                         <div class="w-3 h-3 rounded-full bg-blue-500"></div>
                         <span class="text-gray-700">Carbs</span>
                       </div>
-                      <span class="font-bold text-gray-900">52g</span>
+                      <span class="font-bold text-gray-900">${nutrit.perServing.carbs}g</span>
                     </div>
                     <div class="w-full bg-gray-100 rounded-full h-2">
                       <div
                         class="bg-blue-500 h-2 rounded-full"
-                        style="width: 17%"
+                        style="width: ${nutrit.perServing.carbs/nutrit.totals.carbs*100}%"
                       ></div>
                     </div>
 
@@ -514,12 +512,12 @@ async function displayMealDetailsMain(recipe,nutrit){
                         <div class="w-3 h-3 rounded-full bg-purple-500"></div>
                         <span class="text-gray-700">Fat</span>
                       </div>
-                      <span class="font-bold text-gray-900">8g</span>
+                      <span class="font-bold text-gray-900">${nutrit.perServing.fat}g</span>
                     </div>
                     <div class="w-full bg-gray-100 rounded-full h-2">
                       <div
                         class="bg-purple-500 h-2 rounded-full"
-                        style="width: 12%"
+                        style="width: ${nutrit.perServing.fat/nutrit.totals.fat*100}%"
                       ></div>
                     </div>
 
@@ -528,12 +526,12 @@ async function displayMealDetailsMain(recipe,nutrit){
                         <div class="w-3 h-3 rounded-full bg-orange-500"></div>
                         <span class="text-gray-700">Fiber</span>
                       </div>
-                      <span class="font-bold text-gray-900">4g</span>
+                      <span class="font-bold text-gray-900">${nutrit.perServing.fiber}g</span>
                     </div>
                     <div class="w-full bg-gray-100 rounded-full h-2">
                       <div
                         class="bg-orange-500 h-2 rounded-full"
-                        style="width: 14%"
+                        style="width: ${nutrit.perServing.fiber/nutrit.totals.fiber*100}%"
                       ></div>
                     </div>
 
@@ -542,12 +540,12 @@ async function displayMealDetailsMain(recipe,nutrit){
                         <div class="w-3 h-3 rounded-full bg-pink-500"></div>
                         <span class="text-gray-700">Sugar</span>
                       </div>
-                      <span class="font-bold text-gray-900">12g</span>
+                      <span class="font-bold text-gray-900">${nutrit.perServing.sugar}g</span>
                     </div>
                     <div class="w-full bg-gray-100 rounded-full h-2">
                       <div
                         class="bg-pink-500 h-2 rounded-full"
-                        style="width: 24%"
+                        style="width: ${nutrit.perServing.sugar/nutrit.totals.sugar*100}%"
                       ></div>
                     </div>
                   </div>
@@ -559,11 +557,11 @@ async function displayMealDetailsMain(recipe,nutrit){
                     <div class="grid grid-cols-2 gap-3 text-sm">
                       <div class="flex justify-between">
                         <span class="text-gray-600">Cholesterol</span>
-                        <span class="font-medium">15mg</span>
+                        <span class="font-medium">${nutrit.perServing.cholesterol}mg</span>
                       </div>
                       <div class="flex justify-between">
                         <span class="text-gray-600">Sodium</span>
-                        <span class="font-medium">25mg</span>
+                        <span class="font-medium">${nutrit.perServing.sodium}mg</span>
                       </div>
                       
                     </div>
@@ -573,4 +571,12 @@ async function displayMealDetailsMain(recipe,nutrit){
             </div>
   `
   
+}
+
+function getEmbedUrl(videoUrl) {
+    if (videoUrl.includes('watch?v=')) {
+        const videoId = videoUrl.split('v=')[1].split('&')[0];
+        return `https://www.youtube.com/embed/${videoId}`;
+    }
+    return videoUrl;
 }
